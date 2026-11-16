@@ -1,0 +1,2307 @@
+```html
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PS Trámites y Servicios | Confianza que respalda tu futuro</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter y Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              950: '#061224',
+              900: '#0B1F3A',
+              800: '#153E75',
+              700: '#1E4E8C',
+              100: '#E6EEF8',
+              50: '#F8FAFC',
+            },
+            gold: {
+              600: '#9A6F08',
+              500: '#B8860B',
+              400: '#D4AF37',
+              300: '#E5C76B',
+              100: '#FBF5E3',
+              50: '#FDFBF3',
+            }
+          },
+          boxShadow: {
+            'gold': '0 10px 25px -5px rgba(212, 175, 55, 0.25), 0 8px 10px -6px rgba(184, 134, 11, 0.15)',
+            'navy': '0 15px 35px -10px rgba(11, 31, 58, 0.2)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Estilos base y detalles personalizados */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F8FAFC;
+      color: #0B1F3A;
+    }
+
+    h1, h2, h3, .font-display {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Degradado dorado metálico sutil para bordes y detalles */
+    .gold-gradient {
+      background: linear-gradient(135deg, #D4AF37 0%, #F3D982 50%, #B8860B 100%);
+    }
+
+    .navy-hero-gradient {
+      background: radial-gradient(circle at 85% 15%, rgba(21, 62, 117, 0.95) 0%, #0B1F3A 60%, #061224 100%);
+    }
+
+    /* Patrón sutil de cuadrícula para el mapa estilizado */
+    .map-grid-bg {
+      background-color: #EDF2F7;
+      background-image: 
+        linear-gradient(to right, rgba(11, 31, 58, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(11, 31, 58, 0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    /* Scrollbar elegante */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F1F5F9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+
+    /* Animaciones suaves para transiciones de vistas y modales */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.28s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-gold-400 selection:text-navy-900">
+
+  <!-- ===================================================================== -->
+  <!-- BARRA DE NAVEGACIÓN SUPERIOR (COMPARTIDA CON CONMUTADOR DE VISTAS)     -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-40 bg-navy-900/95 backdrop-blur-md border-b border-gold-400/30 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logotipo Escudo SVG + Identidad de Marca -->
+        <a href="#inicio" onclick="switchView('public')" class="flex items-center gap-3.5 group focus:outline-none">
+          <div class="relative w-12 h-12 flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+            <!-- Escudo SVG Dorado y Azul Marino -->
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-md">
+              <defs>
+                <linearGradient id="shieldGold" x1="6" y1="4" x2="58" y2="60" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#F5DF90" />
+                  <stop offset="50%" stop-color="#D4AF37" />
+                  <stop offset="100%" stop-color="#9A6F08" />
+                </linearGradient>
+                <linearGradient id="shieldNavy" x1="12" y1="10" x2="52" y2="54" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#153E75" />
+                  <stop offset="100%" stop-color="#08162B" />
+                </linearGradient>
+              </defs>
+              <!-- Contorno exterior dorado -->
+              <path d="M32 3L8 12.5V29.5C8 45.2 18.2 58.6 32 62C45.8 58.6 56 45.2 56 29.5V12.5L32 3Z" fill="url(#shieldGold)" />
+              <!-- Interior azul marino -->
+              <path d="M32 7L12 15V29.2C12 42.6 20.6 54.1 32 57.2C43.4 54.1 52 42.6 52 29.2V15L32 7Z" fill="url(#shieldNavy)" />
+              <!-- Detalle línea interna dorada -->
+              <path d="M32 10.5L15 17.3V29.1C15 40.7 22.3 50.6 32 53.4C41.7 50.6 49 40.7 49 29.1V17.3L32 10.5Z" stroke="#D4AF37" stroke-opacity="0.45" stroke-width="1.2" />
+              <!-- Iniciales PS -->
+              <text x="32" y="38" text-anchor="middle" fill="url(#shieldGold)" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="21" letter-spacing="-0.5">PS</text>
+              <!-- Palomita de confianza superior -->
+              <path d="M27.5 19.5L30.5 22.5L37 16" stroke="#F5DF90" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-display font-extrabold text-white text-lg sm:text-xl tracking-tight leading-none">
+                PS <span class="text-gold-400">Trámites</span> y Servicios
+              </span>
+            </div>
+            <p class="text-[11px] sm:text-xs text-gold-300/90 font-medium tracking-wide mt-1">
+              Confianza que respalda tu futuro
+            </p>
+          </div>
+        </a>
+
+        <!-- Navegación Desktop (Vista Pública) -->
+        <nav id="public-nav-links" class="hidden md:flex items-center gap-7">
+          <a href="#servicios" class="text-sm font-medium text-slate-200 hover:text-gold-400 transition-colors">Servicios</a>
+          <a href="#agendar-cita" class="text-sm font-medium text-slate-200 hover:text-gold-400 transition-colors">Agendar Cita</a>
+          <a href="#ubicacion" class="text-sm font-medium text-slate-200 hover:text-gold-400 transition-colors">Ubicación y Horarios</a>
+        </nav>
+
+        <!-- Indicador de Modo Admin (Solo visible en Vista Admin) -->
+        <div id="admin-nav-badge" class="hidden items-center gap-2 bg-navy-800/90 border border-gold-400/40 px-3.5 py-1.5 rounded-full">
+          <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse"></span>
+          <span class="text-xs font-semibold text-gold-300 uppercase tracking-wider">Panel Administrativo</span>
+        </div>
+
+        <!-- Botones de Acción Derecha -->
+        <div class="flex items-center gap-2.5">
+          <!-- Botón Acceso Admin (Visible en Vista Pública) -->
+          <button id="btn-open-admin-login" onclick="openAdminLoginModal()" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-gold-300 bg-navy-800/80 hover:bg-navy-800 border border-gold-400/40 hover:border-gold-400 transition-all shadow-sm">
+            <svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            <span>Acceso Admin</span>
+          </button>
+
+          <!-- Botón Volver a Web Pública (Visible en Vista Admin) -->
+          <button id="btn-back-to-public" onclick="switchView('public')" class="hidden items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-navy-900 gold-gradient hover:brightness-105 transition-all shadow-gold">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            <span>Ver Web Pública</span>
+          </button>
+
+          <!-- Botón Menú Móvil (Solo Vista Pública) -->
+          <button id="btn-mobile-menu" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-slate-200 hover:text-gold-400 hover:bg-navy-800 transition-colors" aria-label="Abrir menú">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Menú Desplegable Móvil (Vista Pública) -->
+      <div id="mobile-menu-drawer" class="hidden md:hidden pb-4 pt-2 border-t border-navy-800 space-y-1">
+        <a href="#servicios" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-navy-800 hover:text-gold-400">Servicios</a>
+        <a href="#agendar-cita" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-navy-800 hover:text-gold-400">Agendar Cita</a>
+        <a href="#ubicacion" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-navy-800 hover:text-gold-400">Ubicación y Horarios</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- VISTA 1: PÁGINA WEB PÚBLICA (CATÁLOGO DE SERVICIOS Y CITAS)           -->
+  <!-- ===================================================================== -->
+  <main id="view-public" class="flex-1 animate-fade-in">
+    
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative overflow-hidden navy-hero-gradient text-white border-b-4 border-gold-400">
+      <!-- Elementos decorativos sutiles -->
+      <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gold-400/10 blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-0 left-10 w-72 h-72 rounded-full bg-navy-700/30 blur-2xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          
+          <!-- Columna Izquierda: Propuesta de Valor y CTAs -->
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-gold-400/40 backdrop-blur-sm">
+              <svg class="w-4 h-4 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span class="text-xs sm:text-sm font-semibold text-gold-300 tracking-wide">Asesoría Especializada • Infonavit • SAT • Registro Civil</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl lg:text-[52px] font-extrabold tracking-tight leading-[1.12]">
+              Tus trámites seguros, rápidos y sin complicaciones.
+              <span class="block text-gold-400 mt-2 text-2xl sm:text-4xl font-bold">“Confianza que respalda tu futuro”</span>
+            </h1>
+
+            <p class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+              Gestionamos tus trámites de <strong class="text-white">Infonavit, Afore, Actas Oficiales y SAT</strong> con total transparencia y acompañamiento personalizado desde el primer día.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+              <a href="#agendar-cita" class="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl font-bold text-navy-900 gold-gradient hover:brightness-105 transition-all shadow-gold text-base">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span>Agendar Cita Ahora</span>
+              </a>
+              <a href="#servicios" class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/25 transition-all text-base">
+                <span>Explorar Servicios</span>
+                <svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </a>
+            </div>
+
+            <!-- Indicadores de confianza -->
+            <div class="grid grid-cols-3 gap-4 pt-4 border-t border-white/15 max-w-lg">
+              <div>
+                <p class="text-xl sm:text-2xl font-extrabold text-gold-400">100%</p>
+                <p class="text-xs text-slate-300">Trámites Legales</p>
+              </div>
+              <div>
+                <p class="text-xl sm:text-2xl font-extrabold text-white">Atención</p>
+                <p class="text-xs text-slate-300">Personalizada</p>
+              </div>
+              <div>
+                <p class="text-xl sm:text-2xl font-extrabold text-gold-400">Rápido</p>
+                <p class="text-xs text-slate-300">Sin filas eternas</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Dos Tarjetas Promocionales Destacadas (Mejoravit y Desempleo) -->
+          <div class="lg:col-span-5 space-y-5">
+            
+            <!-- Tarjeta Promo 1: Trámite de Mejoravit -->
+            <div class="relative bg-white text-navy-900 rounded-3xl p-6 sm:p-7 shadow-2xl border-2 border-gold-400 overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+              <div class="absolute top-0 right-0 bg-navy-900 text-gold-400 text-[11px] font-bold uppercase tracking-wider px-4 py-1.5 rounded-bl-2xl">
+                Trámite Estrella Infonavit
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-navy-900 text-gold-400 flex items-center justify-center flex-shrink-0 shadow-md">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <span class="text-xs font-bold uppercase tracking-wider text-navy-700">Trámite de</span>
+                  <h2 class="text-xl sm:text-2xl font-extrabold text-navy-900">Mejoravit</h2>
+                  <div class="mt-2 inline-flex items-baseline gap-1.5 bg-gold-100 border border-gold-400/50 px-3.5 py-1.5 rounded-xl">
+                    <span class="text-xs font-bold text-navy-800 uppercase">Recibe hasta</span>
+                    <span class="text-2xl sm:text-3xl font-black text-navy-900">$164,000</span>
+                  </div>
+                  <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+                    Remodela, amplía o mejora tu vivienda utilizando tu subcuenta Infonavit con asesoría integral.
+                  </p>
+                  <button onclick="selectServiceAndScroll('Trámite de Mejoravit')" class="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-navy-800 hover:text-gold-600 transition-colors">
+                    <span>Solicitar evaluación para Mejoravit</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tarjeta Promo 2: Apoyo por Desempleo -->
+            <div class="relative bg-gradient-to-br from-navy-800 to-navy-900 text-white rounded-3xl p-6 sm:p-7 shadow-2xl border border-gold-400/60 overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+              <div class="absolute top-0 right-0 gold-gradient text-navy-900 text-[11px] font-extrabold uppercase tracking-wider px-4 py-1.5 rounded-bl-2xl">
+                Liquidez Inmediata
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-2xl gold-gradient text-navy-900 flex items-center justify-center flex-shrink-0 shadow-md">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <span class="text-xs font-bold uppercase tracking-wider text-gold-300">Trámite de</span>
+                  <h2 class="text-xl sm:text-2xl font-extrabold text-white">Apoyo por Desempleo</h2>
+                  <div class="mt-2 inline-flex items-baseline gap-1.5 bg-white/10 border border-gold-400/50 px-3.5 py-1.5 rounded-xl">
+                    <span class="text-xs font-bold text-gold-300 uppercase">Retira hasta</span>
+                    <span class="text-2xl sm:text-3xl font-black text-gold-400">$35,200</span>
+                  </div>
+                  <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed">
+                    Gestionamos tu retiro parcial por desempleo de manera ágil y segura cumpliendo los requisitos vigentes.
+                  </p>
+                  <button onclick="selectServiceAndScroll('Retiro / Apoyo por Desempleo')" class="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-gold-400 hover:text-gold-300 transition-colors">
+                    <span>Agendar cita para Retiro</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- CATÁLOGO DE SERVICIOS CON PESTAÑAS DE FILTRO                        -->
+    <!-- =================================================================== -->
+    <section id="servicios" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="inline-block px-4 py-1 rounded-full bg-gold-100 text-gold-600 border border-gold-400/40 text-xs font-bold uppercase tracking-wider mb-3">
+          Portafolio Integral
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          Nuestros Servicios y Trámites
+        </h2>
+        <p class="text-slate-600 mt-3 text-base sm:text-lg">
+          Selecciona una categoría para encontrar el trámite que necesitas. Puedes apartar tu cita en línea en menos de un minuto.
+        </p>
+      </div>
+
+      <!-- Pestañas de Filtro -->
+      <div id="service-category-tabs" class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-10">
+        <!-- Se renderizan dinámicamente con JS -->
+      </div>
+
+      <!-- Grid de Tarjetas de Servicios -->
+      <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Se renderizan dinámicamente con JS -->
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- MÓDULO INTERACTIVO DE AGENDAR CITA                                  -->
+    <!-- =================================================================== -->
+    <section id="agendar-cita" class="py-16 sm:py-24 bg-white border-y border-slate-200/80">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="inline-block px-4 py-1 rounded-full bg-navy-100 text-navy-800 text-xs font-bold uppercase tracking-wider mb-3">
+            Atención Sin Filas
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+            Agenda tu Cita en Sucursal
+          </h2>
+          <p class="text-slate-600 mt-3 text-base">
+            Elige tu trámite, selecciona el día y horario disponible, y recibe al instante la lista de requisitos para agilizar tu atención.
+          </p>
+        </div>
+
+        <div class="bg-navy-50 rounded-3xl border border-slate-200 shadow-navy overflow-hidden">
+          <!-- Encabezado de la tarjeta de reserva -->
+          <div class="bg-navy-900 px-6 sm:px-10 py-5 border-b-2 border-gold-400 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl gold-gradient text-navy-900 flex items-center justify-center font-bold">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-white font-bold text-base sm:text-lg">Reservación de Atención Personalizada</h3>
+                <p class="text-gold-300 text-xs">Los horarios ocupados se bloquean automáticamente en tiempo real</p>
+              </div>
+            </div>
+            <span class="text-xs text-slate-300 bg-white/10 px-3 py-1 rounded-full self-start sm:self-auto">
+              Sin costo por apartar
+            </span>
+          </div>
+
+          <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="p-6 sm:p-10 space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              
+              <!-- Paso 1: Selector de Trámite -->
+              <div>
+                <label for="booking-service" class="block text-sm font-bold text-navy-900 mb-2">
+                  1. Selecciona el Trámite <span class="text-red-500">*</span>
+                </label>
+                <select id="booking-service" required onchange="updateBookingRequirementsPreview()" class="w-full px-4 py-3.5 rounded-2xl bg-white border border-slate-300 text-navy-900 font-medium focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-gold-400 transition-all shadow-sm">
+                  <!-- Opciones generadas dinámicamente -->
+                </select>
+                <!-- Vista previa rápida de requisitos del trámite elegido -->
+                <div id="booking-req-hint" class="mt-2.5 p-3 rounded-xl bg-gold-50 border border-gold-400/40 text-xs text-navy-800">
+                  <!-- Se actualiza dinámicamente -->
+                </div>
+              </div>
+
+              <!-- Paso 2: Selector de Fecha (Bloquea domingos) -->
+              <div>
+                <label for="booking-date" class="block text-sm font-bold text-navy-900 mb-2">
+                  2. Fecha de tu Cita (Lunes a Sábado) <span class="text-red-500">*</span>
+                </label>
+                <input type="date" id="booking-date" required onchange="handleDateChange()" class="w-full px-4 py-3.5 rounded-2xl bg-white border border-slate-300 text-navy-900 font-medium focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-gold-400 transition-all shadow-sm" />
+                <p id="sunday-warning" class="hidden mt-2 text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-3 py-2 rounded-xl">
+                  ⚠️ Los domingos permanecemos cerrados. Seleccionamos automáticamente el siguiente día hábil.
+                </p>
+                <p class="mt-2 text-xs text-slate-500">
+                  Horario de citas: Lunes a Sábado de 09:00 AM a 05:00 PM.
+                </p>
+              </div>
+            </div>
+
+            <!-- Paso 3: Cuadrícula Visual de Horarios Disponibles -->
+            <div>
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <label class="block text-sm font-bold text-navy-900">
+                  3. Elige un Horario Disponible <span class="text-red-500">*</span>
+                </label>
+                <div class="flex items-center gap-4 text-xs">
+                  <span class="inline-flex items-center gap-1.5 text-slate-600">
+                    <span class="w-3 h-3 rounded-sm bg-white border border-slate-300 inline-block"></span> Disponible
+                  </span>
+                  <span class="inline-flex items-center gap-1.5 text-navy-900 font-semibold">
+                    <span class="w-3 h-3 rounded-sm bg-navy-900 border border-gold-400 inline-block"></span> Seleccionado
+                  </span>
+                  <span class="inline-flex items-center gap-1.5 text-slate-400">
+                    <span class="w-3 h-3 rounded-sm bg-slate-200 inline-block"></span> Ocupado
+                  </span>
+                </div>
+              </div>
+
+              <input type="hidden" id="booking-time" required />
+              <div id="time-slots-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                <!-- Botones de horarios generados dinámicamente -->
+              </div>
+              <p id="time-error-msg" class="hidden mt-2 text-xs font-semibold text-red-600">
+                Por favor selecciona un horario disponible para tu cita.
+              </p>
+            </div>
+
+            <!-- Paso 4: Datos de Contacto del Cliente -->
+            <div class="pt-4 border-t border-slate-200">
+              <h4 class="text-sm font-bold text-navy-900 mb-4">4. Tus Datos de Contacto</h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label for="booking-name" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                    Nombre Completo <span class="text-red-500">*</span>
+                  </label>
+                  <input type="text" id="booking-name" required placeholder="Ej. María Guadalupe Hernández" class="w-full px-4 py-3 rounded-2xl bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-gold-400" />
+                </div>
+
+                <div>
+                  <label for="booking-phone" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                    WhatsApp (10 dígitos) <span class="text-red-500">*</span>
+                  </label>
+                  <input type="tel" id="booking-phone" required maxlength="10" pattern="[0-9]{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" placeholder="Ej. 6391234567" class="w-full px-4 py-3 rounded-2xl bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-gold-400" />
+                </div>
+
+                <div class="md:col-span-2">
+                  <label for="booking-notes" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                    Notas Adicionales (Opcional)
+                  </label>
+                  <textarea id="booking-notes" rows="2" placeholder="Ej. Es acta foránea de Veracruz, o tengo duda con mi NSS..." class="w-full px-4 py-3 rounded-2xl bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-gold-400"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón Confirmar Cita -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+              <p class="text-xs text-slate-500 text-center sm:text-left">
+                Tus datos están protegidos y se utilizan únicamente para gestionar tu cita.
+              </p>
+              <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl font-extrabold text-navy-900 gold-gradient hover:brightness-105 transition-all shadow-gold text-base">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Confirmar Cita</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SECCIÓN DE HORARIOS, UBICACIÓN Y CONTACTO                           -->
+    <!-- =================================================================== -->
+    <section id="ubicacion" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="inline-block px-4 py-1 rounded-full bg-gold-100 text-gold-600 border border-gold-400/40 text-xs font-bold uppercase tracking-wider mb-3">
+          Visítanos o Contáctanos
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          Ubicación, Horarios y Contacto
+        </h2>
+        <p class="text-slate-600 mt-3 text-base">
+          Estamos listos para atenderte en sucursal o resolver tus dudas directamente por WhatsApp.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        
+        <!-- Tarjeta de Horarios y Contacto Directo -->
+        <div class="lg:col-span-5 flex flex-col justify-between bg-navy-900 text-white rounded-3xl p-7 sm:p-8 shadow-navy border border-gold-400/40">
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-11 h-11 rounded-2xl gold-gradient text-navy-900 flex items-center justify-center">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold">Horarios de Atención</h3>
+                <p class="text-xs text-gold-300">Atención continua en sucursal</p>
+              </div>
+            </div>
+
+            <div class="space-y-3.5 text-sm">
+              <div class="flex items-center justify-between py-3 px-4 rounded-2xl bg-white/5 border border-white/10">
+                <span class="font-medium text-slate-200">Lunes a Viernes</span>
+                <span class="font-bold text-gold-400">9:00 AM – 6:00 PM</span>
+              </div>
+              <div class="flex items-center justify-between py-3 px-4 rounded-2xl bg-white/5 border border-white/10">
+                <span class="font-medium text-slate-200">Sábados</span>
+                <span class="font-bold text-gold-400">9:00 AM – 2:00 PM</span>
+              </div>
+              <div class="flex items-center justify-between py-3 px-4 rounded-2xl bg-white/5 border border-white/10">
+                <span class="font-medium text-slate-400">Domingos</span>
+                <span class="font-semibold text-slate-400">Cerrado</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botones Directos de Llamada y WhatsApp -->
+          <div class="mt-8 pt-6 border-t border-white/15 space-y-3">
+            <p class="text-xs font-bold uppercase tracking-wider text-gold-300">Contacto Inmediato</p>
+            <a href="https://wa.me/526391000000?text=Hola%20PS%20Tr%C3%A1mites%20y%20Servicios,%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20sobre%20un%20tr%C3%A1mite." target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl font-bold text-white bg-emerald-600 hover:bg-emerald-500 transition-all shadow-md">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+              </svg>
+              <span>Enviar Mensaje por WhatsApp</span>
+            </a>
+            <a href="tel:+526391000000" class="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl font-bold text-navy-900 bg-white hover:bg-gold-50 transition-all">
+              <svg class="w-5 h-5 text-navy-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              <span>Llamar: (639) 100-0000</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tarjeta de Ubicación con Mapa Estilizado -->
+        <div class="lg:col-span-7 bg-white rounded-3xl border border-slate-200 shadow-navy overflow-hidden flex flex-col">
+          <!-- Mapa Visual Vectorial Estilizado -->
+          <div class="relative flex-1 min-h-[260px] map-grid-bg overflow-hidden flex items-center justify-center p-6">
+            <!-- Calles y avenidas SVG -->
+            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid slice">
+              <!-- Áreas verdes / parques -->
+              <rect x="40" y="35" width="110" height="75" rx="14" fill="#DCFCE7" opacity="0.8" />
+              <rect x="440" y="195" width="120" height="85" rx="14" fill="#DCFCE7" opacity="0.8" />
+              <!-- Manzanas -->
+              <rect x="185" y="30" width="120" height="80" rx="10" fill="#E2E8F0" />
+              <rect x="335" y="30" width="145" height="80" rx="10" fill="#E2E8F0" />
+              <rect x="40" y="145" width="110" height="130" rx="10" fill="#E2E8F0" />
+              <rect x="185" y="145" width="120" height="130" rx="10" fill="#E2E8F0" />
+              <!-- Avenidas Principales -->
+              <path d="M0 128H600" stroke="#FFFFFF" stroke-width="18" />
+              <path d="M0 128H600" stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="6 6" />
+              <path d="M168 0V320" stroke="#FFFFFF" stroke-width="16" />
+              <path d="M320 0V320" stroke="#FFFFFF" stroke-width="14" />
+              <!-- Etiquetas de calles -->
+              <text x="45" y="132" fill="#475569" font-size="10" font-weight="700" font-family="Inter, sans-serif">AV. TECNOLÓGICO / CENTRO</text>
+              <text x="172" y="250" fill="#64748B" font-size="9" font-weight="600" transform="rotate(-90 172 250)" font-family="Inter, sans-serif">CALLE 3A NORTE</text>
+            </svg>
+
+            <!-- Pin de Ubicación Central PS Trámites -->
+            <div class="relative z-10 flex flex-col items-center">
+              <div class="bg-navy-900 text-white px-4 py-2 rounded-2xl shadow-xl border-2 border-gold-400 mb-2 text-center">
+                <p class="text-xs font-extrabold text-gold-400">PS Trámites y Servicios</p>
+                <p class="text-[11px] text-slate-200">Oficina de Atención al Público</p>
+              </div>
+              <div class="w-11 h-11 rounded-full gold-gradient border-4 border-navy-900 shadow-lg flex items-center justify-center animate-bounce">
+                <svg class="w-5 h-5 text-navy-900" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dirección y Botón Google Maps -->
+          <div class="p-6 sm:p-7 bg-white border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-gold-600">Dirección de Sucursal</span>
+              <h4 class="text-lg font-extrabold text-navy-900 mt-0.5">Av. Principal #412, Local 4, Zona Centro</h4>
+              <p class="text-sm text-slate-600 mt-0.5">Frente a Plaza Comercial • Estacionamiento disponible</p>
+            </div>
+            <a href="https://maps.google.com/?q=Zona+Centro" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl font-bold text-white bg-navy-900 hover:bg-navy-800 border border-gold-400/50 transition-all flex-shrink-0 shadow-sm">
+              <svg class="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>Abrir en Google Maps</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Público -->
+    <footer class="bg-navy-950 text-slate-300 border-t border-gold-400/30 py-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-center sm:text-left">
+          <p class="font-display font-bold text-white text-base">
+            PS <span class="text-gold-400">Trámites</span> y Servicios
+          </p>
+          <p class="text-xs text-slate-400 mt-1">Confianza que respalda tu futuro • Todos los derechos reservados.</p>
+        </div>
+        <div class="flex items-center gap-6 text-xs text-slate-400">
+          <a href="#servicios" class="hover:text-gold-400 transition-colors">Servicios</a>
+          <a href="#agendar-cita" class="hover:text-gold-400 transition-colors">Agendar Cita</a>
+          <button onclick="openAdminLoginModal()" class="hover:text-gold-400 transition-colors">Acceso Administrativo</button>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- VISTA 2: PANEL ADMIN (BASE DE DATOS DE CLIENTES Y GESTIÓN DE CITAS)   -->
+  <!-- ===================================================================== -->
+  <section id="view-admin" class="hidden flex-1 pb-16 animate-fade-in">
+    
+    <!-- Encabezado Ejecutivo del Panel Admin -->
+    <div class="bg-navy-900 text-white border-b-2 border-gold-400 py-8 sm:py-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-400/15 border border-gold-400/40 text-gold-300 text-xs font-bold mb-2">
+              <span>SISTEMA DE GESTORÍA Y CONTROL</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+              Panel de Control — <span class="text-gold-400">PS Trámites y Servicios</span>
+            </h1>
+            <p class="text-sm text-slate-300 mt-1">
+              Administra tu base de datos de clientes (CURP, RFC, NSS) y da seguimiento a las citas agendadas desde la web.
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button onclick="openResetDemoModal()" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-300 bg-white/5 hover:bg-white/10 border border-white/15 transition-colors" title="Restaurar datos iniciales de demostración">
+              Restaurar Demo
+            </button>
+            <button onclick="openClientModal()" class="inline-flex items-center gap-2 px-5 py-3 rounded-2xl font-extrabold text-navy-900 gold-gradient hover:brightness-105 transition-all shadow-gold text-sm">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M12 4v16m8-8H4" />
+              </svg>
+              <span>Registrar Nuevo Cliente</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tarjetas de Métricas Rápidas (KPIs) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-navy-800/80 border border-white/10 rounded-2xl p-5 flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-300">Total Clientes en BD</p>
+              <p id="kpi-total-clients" class="text-3xl font-black text-white mt-1">0</p>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-white/10 text-gold-400 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="bg-navy-800/80 border border-white/10 rounded-2xl p-5 flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-300">Trámites En Proceso</p>
+              <p id="kpi-in-progress" class="text-3xl font-black text-gold-400 mt-1">0</p>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-gold-400/15 text-gold-400 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="bg-navy-800/80 border border-white/10 rounded-2xl p-5 flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-300">Listos para Entrega</p>
+              <p id="kpi-ready" class="text-3xl font-black text-emerald-400 mt-1">0</p>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="bg-navy-800/80 border border-gold-400/40 rounded-2xl p-5 flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wider text-gold-300">Citas Web Pendientes</p>
+              <p id="kpi-pending-appointments" class="text-3xl font-black text-white mt-1">0</p>
+            </div>
+            <div class="w-12 h-12 rounded-2xl gold-gradient text-navy-900 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenedor Principal del Panel Admin -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+      
+      <!-- Pestañas Principales del Admin -->
+      <div class="flex flex-wrap items-center gap-3 border-b border-slate-200 pb-4 mb-6">
+        <button id="admin-tab-clients" onclick="switchAdminTab('clients')" class="inline-flex items-center gap-2 px-5 py-3 rounded-2xl text-sm font-bold transition-all bg-navy-900 text-white shadow-md">
+          <svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+          <span>Base de Datos de Clientes</span>
+          <span id="badge-clients-count" class="ml-1 px-2 py-0.5 text-xs rounded-full bg-gold-400 text-navy-900 font-extrabold">0</span>
+        </button>
+
+        <button id="admin-tab-appointments" onclick="switchAdminTab('appointments')" class="inline-flex items-center gap-2 px-5 py-3 rounded-2xl text-sm font-bold transition-all bg-white text-navy-900 border border-slate-200 hover:border-gold-400">
+          <svg class="w-4 h-4 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <span>Citas Recibidas (Web)</span>
+          <span id="badge-appointments-count" class="ml-1 px-2 py-0.5 text-xs rounded-full bg-navy-100 text-navy-900 font-extrabold">0</span>
+        </button>
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- PESTAÑA A: BASE DE DATOS DE CLIENTES                              -->
+      <!-- ================================================================= -->
+      <div id="admin-panel-clients" class="space-y-6">
+        
+        <!-- Barra de Búsqueda Instantánea y Filtro por Estatus -->
+        <div class="bg-white p-4 sm:p-5 rounded-3xl border border-slate-200 shadow-sm flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+          <div class="relative flex-1">
+            <svg class="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input type="text" id="client-search-input" oninput="renderClientsTable()" placeholder="Buscar por Nombre, CURP, RFC, NSS, Teléfono o Trámite..." class="w-full pl-12 pr-4 py-3 rounded-2xl bg-navy-50 border border-slate-200 text-sm text-navy-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-400 focus:bg-white transition-all" />
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <label for="client-status-filter" class="text-xs font-bold uppercase tracking-wider text-slate-500">Estatus:</label>
+            <select id="client-status-filter" onchange="renderClientsTable()" class="px-4 py-3 rounded-2xl bg-navy-50 border border-slate-200 text-sm font-semibold text-navy-900 focus:outline-none focus:ring-2 focus:ring-gold-400">
+              <option value="Todos">Todos los estatus</option>
+              <option value="Pendiente">Pendiente</option>
+              <option value="En proceso">En proceso</option>
+              <option value="Listo para entrega">Listo para entrega</option>
+              <option value="Entregado">Entregado</option>
+            </select>
+
+            <button onclick="openClientModal()" class="inline-flex items-center gap-2 px-4 py-3 rounded-2xl font-bold text-white bg-navy-900 hover:bg-navy-800 transition-all text-sm">
+              <span>+ Nuevo Cliente</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tabla Responsiva de Clientes (Desktop) -->
+        <div class="hidden lg:block bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-navy-900 text-white text-xs uppercase tracking-wider">
+                  <th class="py-4 px-5 font-bold">Cliente / Contacto</th>
+                  <th class="py-4 px-5 font-bold">Identificadores (CURP / RFC / NSS)</th>
+                  <th class="py-4 px-5 font-bold">Trámite y Notas</th>
+                  <th class="py-4 px-5 font-bold">Estatus</th>
+                  <th class="py-4 px-5 font-bold text-right">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="clients-table-body" class="divide-y divide-slate-200 text-sm">
+                <!-- Filas generadas dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Vista de Tarjetas Responsivas de Clientes (Móvil / Tablet) -->
+        <div id="clients-mobile-cards" class="lg:hidden space-y-4">
+          <!-- Tarjetas generadas dinámicamente -->
+        </div>
+
+        <!-- Estado Vacío de Búsqueda -->
+        <div id="clients-empty-state" class="hidden bg-white rounded-3xl border border-slate-200 p-12 text-center">
+          <div class="w-14 h-14 rounded-2xl bg-navy-50 text-navy-700 flex items-center justify-center mx-auto mb-3">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-navy-900">No se encontraron registros</h3>
+          <p class="text-sm text-slate-500 mt-1">Intenta con otro término de búsqueda o registra un nuevo cliente.</p>
+        </div>
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- PESTAÑA B: CITAS RECIBIDAS (WEB)                                  -->
+      <!-- ================================================================= -->
+      <div id="admin-panel-appointments" class="hidden space-y-5">
+        <div class="bg-gold-50 border border-gold-400/50 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-navy-900 text-gold-400 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <p class="text-xs sm:text-sm text-navy-900">
+              <strong>Flujo rápido:</strong> Cuando un cliente acuda a su cita o confirme asistencia, haz clic en <span class="font-bold underline">“Registrar en Base de Datos”</span> para crear su expediente automáticamente.
+            </p>
+          </div>
+        </div>
+
+        <div id="appointments-list-container" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Tarjetas de citas generadas dinámicamente -->
+        </div>
+
+        <div id="appointments-empty-state" class="hidden bg-white rounded-3xl border border-slate-200 p-12 text-center">
+          <h3 class="text-lg font-bold text-navy-900">Aún no hay citas registradas</h3>
+          <p class="text-sm text-slate-500 mt-1">Las citas agendadas desde la página pública aparecerán aquí al instante.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- MODALES INTERACTIVOS (SIN ALERT NI CONFIRM NATIVOS)                   -->
+  <!-- ===================================================================== -->
+
+  <!-- 1. MODAL DE INICIO DE SESIÓN ADMIN -->
+  <div id="modal-admin-login" class="hidden fixed inset-0 z-50 bg-navy-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-gold-400/60 animate-fade-in">
+      <div class="bg-navy-900 px-6 py-5 border-b border-gold-400/40 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl gold-gradient text-navy-900 flex items-center justify-center font-bold">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h3 class="text-white font-bold text-lg">Acceso Administrativo</h3>
+        </div>
+        <button onclick="closeModal('modal-admin-login')" class="text-slate-300 hover:text-white p-1 rounded-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <form onsubmit="handleAdminLogin(event)" class="p-6 space-y-5">
+        <p class="text-sm text-slate-600">
+          Ingresa la clave de acceso para gestionar la base de datos de clientes y citas de <strong>PS Trámites y Servicios</strong>.
+        </p>
+
+        <div>
+          <label for="admin-password-input" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1.5">
+            Contraseña de Acceso (Demo: <span class="text-gold-600">1234</span>)
+          </label>
+          <input type="password" id="admin-password-input" placeholder="••••" class="w-full px-4 py-3 rounded-2xl bg-navy-50 border border-slate-300 text-navy-900 font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-gold-400" />
+          <p id="admin-login-error" class="hidden mt-2 text-xs font-semibold text-red-600">
+            Contraseña incorrecta. Usa "1234" o el botón de acceso rápido.
+          </p>
+        </div>
+
+        <div class="space-y-2.5 pt-1">
+          <button type="submit" class="w-full py-3.5 px-5 rounded-2xl font-bold text-white bg-navy-900 hover:bg-navy-800 transition-all">
+            Iniciar Sesión
+          </button>
+          <button type="button" onclick="enterAdminDemoDirectly()" class="w-full py-3.5 px-5 rounded-2xl font-extrabold text-navy-900 gold-gradient hover:brightness-105 transition-all shadow-gold flex items-center justify-center gap-2">
+            <span>Entrar al Panel Demo (1 Clic)</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. MODAL DE CONFIRMACIÓN DE CITA (CON REQUISITOS Y WHATSAPP) -->
+  <div id="modal-booking-success" class="hidden fixed inset-0 z-50 bg-navy-950/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border-2 border-gold-400 animate-fade-in my-8">
+      <div class="bg-navy-900 px-6 py-6 text-center relative border-b-2 border-gold-400">
+        <div class="w-14 h-14 rounded-full gold-gradient text-navy-900 flex items-center justify-center mx-auto mb-3 shadow-gold">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <span id="confirm-modal-folio" class="inline-block px-3 py-1 rounded-full bg-white/10 border border-gold-400/50 text-gold-300 text-xs font-extrabold tracking-wider mb-1">
+          FOLIO: PS-2026-000
+        </span>
+        <h3 class="text-white text-2xl font-extrabold">¡Tu Cita Está Apartada!</h3>
+        <p class="text-slate-300 text-xs sm:text-sm mt-1">Te esperamos en PS Trámites y Servicios</p>
+      </div>
+
+      <div class="p-6 space-y-5">
+        <!-- Resumen de la cita -->
+        <div class="bg-navy-50 rounded-2xl p-4 border border-slate-200 space-y-2 text-sm">
+          <div class="flex justify-between gap-2">
+            <span class="text-slate-500">Cliente:</span>
+            <span id="confirm-modal-name" class="font-bold text-navy-900 text-right">-</span>
+          </div>
+          <div class="flex justify-between gap-2">
+            <span class="text-slate-500">Trámite:</span>
+            <span id="confirm-modal-service" class="font-bold text-navy-800 text-right">-</span>
+          </div>
+          <div class="flex justify-between gap-2">
+            <span class="text-slate-500">Fecha y Hora:</span>
+            <span id="confirm-modal-datetime" class="font-extrabold text-gold-600 text-right">-</span>
+          </div>
+        </div>
+
+        <!-- Requisitos Recomendados -->
+        <div class="bg-gold-50 rounded-2xl p-4 border border-gold-400/50">
+          <h4 class="text-xs font-extrabold uppercase tracking-wider text-navy-900 flex items-center gap-1.5 mb-2">
+            <svg class="w-4 h-4 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+            <span>Requisitos recomendados para llevar:</span>
+          </h4>
+          <ul id="confirm-modal-requirements" class="space-y-1.5 text-xs sm:text-sm text-navy-800 pl-1">
+            <!-- Lista dinámica -->
+          </ul>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="space-y-2.5">
+          <a id="confirm-modal-wa-link" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-5 rounded-2xl font-bold text-white bg-emerald-600 hover:bg-emerald-500 transition-all shadow-md flex items-center justify-center gap-2 text-sm">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+            </svg>
+            <span>Enviar confirmación por WhatsApp</span>
+          </a>
+
+          <button onclick="closeModal('modal-booking-success')" class="w-full py-3 px-5 rounded-2xl font-bold text-navy-900 bg-slate-100 hover:bg-slate-200 transition-all text-sm">
+            Listo, cerrar ventana
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. MODAL DE REGISTRO / EDICIÓN DE CLIENTE (ADMIN) -->
+  <div id="modal-client-form" class="hidden fixed inset-0 z-50 bg-navy-950/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-gold-400/60 animate-fade-in my-8">
+      <div class="bg-navy-900 px-6 py-5 border-b-2 border-gold-400 flex items-center justify-between">
+        <div>
+          <h3 id="client-modal-title" class="text-white font-bold text-lg">Registrar Nuevo Cliente</h3>
+          <p class="text-xs text-gold-300">Expediente de gestoría en base de datos</p>
+        </div>
+        <button onclick="closeModal('modal-client-form')" class="text-slate-300 hover:text-white p-1.5 rounded-xl hover:bg-white/10">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <form id="client-crud-form" onsubmit="handleClientFormSubmit(event)" class="p-6 space-y-5">
+        <input type="hidden" id="client-form-id" />
+        <input type="hidden" id="client-form-source-appointment-id" />
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="sm:col-span-2">
+            <label for="client-name" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">
+              Nombre Completo del Cliente <span class="text-red-500">*</span>
+            </label>
+            <input type="text" id="client-name" required placeholder="Ej. Juan Carlos Mendoza Ruiz" class="w-full px-4 py-3 rounded-2xl bg-navy-50 border border-slate-300 text-navy-900 focus:outline-none focus:ring-2 focus:ring-gold-400 focus:bg-white" />
+          </div>
+
+          <div>
+            <label for="client-phone" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">
+              Teléfono / WhatsApp (10 dígitos) <span class="text-red-500">*</span>
+            </label>
+            <input type="tel" id="client-phone" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" placeholder="6391234567" class="w-full px-4 py-3 rounded-2xl bg-navy-50 border border-slate-300 text-navy-900 focus:outline-none focus:ring-2 focus:ring-gold-400 focus:bg-white" />
+          </div>
+
+          <div>
+            <label for="client-nss" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">
+              NSS (Número de Seguridad Social)
+            </label>
+            <input type="text" id="client-nss" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11)" placeholder="11 dígitos (Opcional)" class="w-full px-4 py-3 rounded-2xl bg-navy-50 border border-slate-300 text-navy-900 font-mono focus:outline-none focus:ring-2 focus:ring-gold-400 focus:bg-white" />
+          </div>
+
+          <div>
+            <label for="client-curp" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">
+              CURP
+            </label>
+            <input type="text" id="client-curp" maxlength="18" oninput="this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 18)" placeholder="18 caracteres (Opcional)" class="w-full px-4 py-3 rounded-2xl bg-navy-50 border border-slate-300 text-navy-900 font-mono uppercase focus:outline-none focus:ring-2 focus:ring-gold-400 focus:bg-white" />
+          </div>
+
+          <div>
+            <label for="client-rfc" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">
+              RFC
+            </label>
+            <input type="text" id="client-rfc" maxlength="13" oninput="this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 13)" placeholder="13 caracteres (Opcional)" class="w-full px-4 py-3 rounded-2xl bg-navy-50 border border-slate-300 text-navy-900 font-mono uppercase focus:outline-none focus:ring-2 focus:ring-gold-400 focus:bg-white" />
+          </div>
+
+          <div>
+            <label for="client-service" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">
+              Trámite Solicitado <span class="text-red-500">*</span>
+            </label>
+            <select id="client-service" required class="w-full px-4 py-3 rounded-2xl bg-navy-50 border border-slate-300 text-navy-900 font-medium focus:outline-none focus:ring-2 focus:ring-gold-400 focus:bg-white">
+              <!-- Opciones dinámicas -->
+            </select>
+          </div>
+
+          <div>
+            <label for="client-status" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">
+              Estatus del Trámite <span class="text-red-500">*</span>
+            </label>
+            <select id="client-status" required class="w-full px-4 py-3 rounded-2xl bg-navy-50 border border-slate-300 text-navy-900 font-semibold focus:outline-none focus:ring-2 focus:ring-gold-400 focus:bg-white">
+              <option value="Pendiente">Pendiente</option>
+              <option value="En proceso">En proceso</option>
+              <option value="Listo para entrega">Listo para entrega</option>
+              <option value="Entregado">Entregado</option>
+            </select>
+          </div>
+
+          <div class="sm:col-span-2">
+            <label for="client-notes" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">
+              Notas Internas / Seguimiento
+            </label>
+            <textarea id="client-notes" rows="2" placeholder="Ej. Entregó copia de INE y estado de cuenta Afore. Pendiente firma..." class="w-full px-4 py-3 rounded-2xl bg-navy-50 border border-slate-300 text-navy-900 focus:outline-none focus:ring-2 focus:ring-gold-400 focus:bg-white"></textarea>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-3 border-t border-slate-200">
+          <button type="button" onclick="closeModal('modal-client-form')" class="px-5 py-3 rounded-2xl font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors text-sm">
+            Cancelar
+          </button>
+          <button type="submit" class="px-6 py-3 rounded-2xl font-extrabold text-navy-900 gold-gradient hover:brightness-105 transition-all shadow-gold text-sm">
+            Guardar en Base de Datos
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. MODAL DE CONFIRMACIÓN GENÉRICO (REEMPLAZA CONFIRM() NATIVO) -->
+  <div id="modal-confirm-dialog" class="hidden fixed inset-0 z-50 bg-navy-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 animate-fade-in text-center">
+      <div class="w-12 h-12 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center mx-auto mb-4">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      </div>
+      <h3 id="confirm-dialog-title" class="text-lg font-extrabold text-navy-900">¿Confirmar acción?</h3>
+      <p id="confirm-dialog-message" class="text-sm text-slate-600 mt-1.5">Esta acción no se puede deshacer.</p>
+      <div class="grid grid-cols-2 gap-3 mt-6">
+        <button onclick="closeModal('modal-confirm-dialog')" class="py-2.5 px-4 rounded-2xl font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 text-sm">
+          Cancelar
+        </button>
+        <button id="confirm-dialog-action-btn" class="py-2.5 px-4 rounded-2xl font-bold text-white bg-red-600 hover:bg-red-700 text-sm">
+          Confirmar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTIFICACIÓN TOAST FLOTANTE -->
+  <div id="toast-notification" class="hidden fixed bottom-5 right-5 z-50 max-w-sm bg-navy-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-gold-400 flex items-center gap-3 animate-fade-in">
+    <div class="w-7 h-7 rounded-full gold-gradient text-navy-900 flex items-center justify-center flex-shrink-0 font-bold">
+      ✓
+    </div>
+    <p id="toast-message" class="text-sm font-medium">Acción realizada correctamente</p>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- LÓGICA DE LA APLICACIÓN (VANILLA JAVASCRIPT MODERNO)                  -->
+  <!-- ===================================================================== -->
+  <script>
+    // =========================================================================
+    // 1. CATÁLOGO OFICIAL DE SERVICIOS DE PS TRÁMITES Y SERVICIOS
+    // =========================================================================
+    const SERVICES_CATALOG = [
+      // Categoría: Infonavit y Afore
+      {
+        id: 'mejoravit',
+        name: 'Trámite de Mejoravit',
+        category: 'Infonavit y Afore',
+        highlight: 'Recibe hasta $164,000',
+        description: 'Obtén financiamiento para remodelar, pintar o ampliar tu hogar usando el saldo de tu subcuenta Infonavit.',
+        requirements: ['INE vigente', 'NSS (11 dígitos)', 'CURP y RFC', 'Estado de cuenta bancario con CLABE', 'Comprobante de domicilio'],
+        requiresAppointment: true
+      },
+      {
+        id: 'desempleo',
+        name: 'Retiro / Apoyo por Desempleo',
+        category: 'Infonavit y Afore',
+        highlight: 'Retira hasta $35,200',
+        description: 'Gestión integral para disponer de tu apoyo económico por desempleo ante tu Afore de forma segura.',
+        requirements: ['INE vigente', 'NSS y CURP', 'Estado de cuenta de tu Afore', 'Estado de cuenta bancario (CLABE)', 'Tener al menos 46 días sin cotizar'],
+        requiresAppointment: true
+      },
+      {
+        id: 'reseteo-infonavit',
+        name: 'Reseteo de Mi Cuenta Infonavit',
+        category: 'Infonavit y Afore',
+        highlight: null,
+        description: '¿Olvidaste tu contraseña o perdiste acceso a tu correo registrado? Restablecemos tu cuenta oficial.',
+        requirements: ['INE vigente', 'NSS (11 dígitos)', 'CURP y RFC', 'Correo electrónico personal activo', 'Número celular a la mano'],
+        requiresAppointment: true
+      },
+      {
+        id: 'recuperacion-cuenta',
+        name: 'Recuperación de Cuenta',
+        category: 'Infonavit y Afore',
+        highlight: null,
+        description: 'Desbloqueo y recuperación de accesos a portales institucionales de Infonavit o Afore.',
+        requirements: ['INE vigente', 'NSS y CURP', 'Correo electrónico nuevo o activo'],
+        requiresAppointment: true
+      },
+      {
+        id: 'rastreo-cuenta',
+        name: 'Rastreo de Cuenta',
+        category: 'Infonavit y Afore',
+        highlight: null,
+        description: 'Localizamos en qué Afore se encuentran tus recursos acumulados y verificamos tu historial de cotización.',
+        requirements: ['NSS (Número de Seguridad Social)', 'CURP', 'INE vigente'],
+        requiresAppointment: true
+      },
+      {
+        id: 'correccion-rfc',
+        name: 'Corrección de RFC ante Infonavit',
+        category: 'Infonavit y Afore',
+        highlight: null,
+        description: 'Actualizamos y homologamos tu RFC ante Infonavit para evitar rechazos en créditos o devoluciones.',
+        requirements: ['Constancia de Situación Fiscal reciente', 'INE vigente', 'NSS y CURP'],
+        requiresAppointment: true
+      },
+      {
+        id: 'recuperacion-subcuenta',
+        name: 'Recuperación de Subcuenta de Infonavit',
+        category: 'Infonavit y Afore',
+        highlight: null,
+        description: 'Asesoría y trámite para recuperar el ahorro de tu Subcuenta de Vivienda tras tu resolución de pensión.',
+        requirements: ['Resolución o Negativa de Pensión', 'INE vigente', 'Estado de cuenta bancario (CLABE)', 'CURP y RFC'],
+        requiresAppointment: true
+      },
+      {
+        id: 'carta-retencion',
+        name: 'Carta de Retención',
+        category: 'Infonavit y Afore',
+        highlight: null,
+        description: 'Descarga y validación oficial de tu Aviso de Retención o Suspensión de Descuentos para tu empresa.',
+        requirements: ['NSS', 'Acceso a Mi Cuenta Infonavit (o INE para apoyo)', 'Número de crédito'],
+        requiresAppointment: true
+      },
+      {
+        id: 'tramite-negativa',
+        name: 'Trámite de Negativa',
+        category: 'Infonavit y Afore',
+        highlight: null,
+        description: 'Orientación y gestión de resolución de Negativa de Pensión para trámites de retiro de recursos.',
+        requirements: ['INE vigente', 'NSS y CURP', 'Acta de nacimiento', 'Estado de cuenta Afore'],
+        requiresAppointment: true
+      },
+
+      // Categoría: Registro Civil
+      {
+        id: 'acta-nacimiento',
+        name: 'Actas de Nacimiento (del Estado y Foráneas)',
+        category: 'Registro Civil',
+        highlight: 'Entrega Rápida',
+        description: 'Búsqueda, descarga e impresión certificada de actas de nacimiento de cualquier estado de la República.',
+        requirements: ['CURP o datos completos (Nombre, fecha y lugar de nacimiento)'],
+        requiresAppointment: true
+      },
+      {
+        id: 'acta-matrimonio',
+        name: 'Actas de Matrimonio',
+        category: 'Registro Civil',
+        highlight: null,
+        description: 'Expedición oficial de acta de matrimonio certificada válida para trámites legales y bancarios.',
+        requirements: ['CURP de alguno de los contrayentes o datos del registro'],
+        requiresAppointment: true
+      },
+      {
+        id: 'acta-defuncion',
+        name: 'Actas de Defunción',
+        category: 'Registro Civil',
+        highlight: null,
+        description: 'Obtención rápida de acta de defunción certificada para trámites sucesorios, seguros o pensiones.',
+        requirements: ['CURP de la persona finada o copia anterior del acta'],
+        requiresAppointment: true
+      },
+      {
+        id: 'tramite-curp',
+        name: 'Trámite e Impresión de CURP',
+        category: 'Registro Civil',
+        highlight: 'Certificada',
+        description: 'Consulta, descarga e impresión de tu CURP certificada y verificada ante el Registro Civil.',
+        requirements: ['Nombre completo, fecha y entidad de nacimiento (o clave CURP)'],
+        requiresAppointment: true
+      },
+
+      // Categoría: SAT y Fiscales
+      {
+        id: 'constancia-fiscal',
+        name: 'Constancia de Situación Fiscal',
+        category: 'SAT y Fiscales',
+        highlight: 'Actualizada',
+        description: 'Generación e impresión de tu Constancia de Situación Fiscal (CSF) vigente para empleo o facturación.',
+        requirements: ['RFC o CURP', 'Contraseña SAT o e.firma (si no cuentas con ella te orientamos)'],
+        requiresAppointment: true
+      },
+
+      // Categoría: Servicios Express (Sin cita, directo en sucursal)
+      {
+        id: 'copias',
+        name: 'Copias',
+        category: 'Servicios Express',
+        highlight: 'Al momento',
+        description: 'Fotocopiado nítido en blanco y negro o a color de identificaciones, actas y expedientes.',
+        requirements: ['Traer documento original a sucursal (No requiere cita previa)'],
+        requiresAppointment: false
+      },
+      {
+        id: 'enmicado',
+        name: 'Enmicado',
+        category: 'Servicios Express',
+        highlight: 'Protección térmica',
+        description: 'Enmicado profesional en tamaño credencial, media carta, carta y oficio para proteger tus documentos.',
+        requirements: ['Traer documento impreso a sucursal (No requiere cita previa)'],
+        requiresAppointment: false
+      }
+    ];
+
+    const SERVICE_CATEGORIES = [
+      'Todos',
+      'Infonavit y Afore',
+      'Registro Civil',
+      'SAT y Fiscales',
+      'Servicios Express'
+    ];
+
+    const TIME_SLOTS = [
+      '09:00 AM',
+      '10:00 AM',
+      '11:00 AM',
+      '12:00 PM',
+      '01:00 PM',
+      '02:00 PM',
+      '03:00 PM',
+      '04:00 PM',
+      '05:00 PM'
+    ];
+
+    // =========================================================================
+    // 2. GESTIÓN DE ESTADO Y LOCALSTORAGE (CON DATOS DEMO REALISTAS)
+    // =========================================================================
+    const STORAGE_KEYS = {
+      CLIENTS: 'ps_tramites_clients_v1',
+      APPOINTMENTS: 'ps_tramites_appointments_v1'
+    };
+
+    // Obtener fecha hábil futura en formato YYYY-MM-DD (evitando domingos)
+    function getNextBusinessDate(daysAhead = 1) {
+      const date = new Date();
+      date.setDate(date.getDate() + daysAhead);
+      if (date.getDay() === 0) {
+        date.setDate(date.getDate() + 1);
+      }
+      return formatDateISO(date);
+    }
+
+    function formatDateISO(dateObj) {
+      const y = dateObj.getFullYear();
+      const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+      const d = String(dateObj.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+
+    function formatDateHuman(isoDateStr) {
+      if (!isoDateStr) return '';
+      const [y, m, d] = isoDateStr.split('-').map(Number);
+      const date = new Date(y, m - 1, d);
+      return date.toLocaleDateString('es-MX', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      });
+    }
+
+    function getDefaultClients() {
+      return [
+        {
+          id: 'cli-101',
+          name: 'Roberto Carlos Domínguez Soto',
+          phone: '6391184520',
+          curp: 'DOSR860514HCHMNR04',
+          rfc: 'DOSR8605149A1',
+          nss: '48048619283',
+          service: 'Trámite de Mejoravit',
+          status: 'En proceso',
+          notes: 'Precalificación aprobada por $148,500. Pendiente validación de tarjeta Mejoravit.',
+          createdAt: '2026-11-12'
+        },
+        {
+          id: 'cli-102',
+          name: 'Laura Elena Martínez Fierro',
+          phone: '6391429087',
+          curp: 'MAFL910822MCHTRL09',
+          rfc: 'MAFL910822K42',
+          nss: '11099145821',
+          service: 'Retiro / Apoyo por Desempleo',
+          status: 'Listo para entrega',
+          notes: 'Trámite autorizado en Afore XXI Banorte. Avisar para entrega de comprobante.',
+          createdAt: '2026-11-13'
+        },
+        {
+          id: 'cli-103',
+          name: 'José Luis Sandoval Aguirre',
+          phone: '6142893310',
+          curp: 'SAAJ791103HCHNDL02',
+          rfc: 'SAAJ7911037P8',
+          nss: '32987910442',
+          service: 'Corrección de RFC ante Infonavit',
+          status: 'En proceso',
+          notes: 'Entregó Constancia de Situación Fiscal actualizada. Folio Infonavit generado.',
+          createdAt: '2026-11-14'
+        },
+        {
+          id: 'cli-104',
+          name: 'Ana Sofía Trevizo Morales',
+          phone: '6391756412',
+          curp: 'TEMA950318MCHVRS05',
+          rfc: 'TEMA9503182B6',
+          nss: '64139522019',
+          service: 'Actas de Nacimiento (del Estado y Foráneas)',
+          status: 'Entregado',
+          notes: 'Acta foránea del estado de Sinaloa certificada y enmicada.',
+          createdAt: '2026-11-15'
+        },
+        {
+          id: 'cli-105',
+          name: 'Héctor Manuel Chávez Portillo',
+          phone: '6391097734',
+          curp: 'CAPH830927HCHVRC01',
+          rfc: 'CAPH8309275M3',
+          nss: '55028371904',
+          service: 'Reseteo de Mi Cuenta Infonavit',
+          status: 'Pendiente',
+          notes: 'Traer correo electrónico nuevo para vincular acceso y descargar carta de retención.',
+          createdAt: '2026-11-16'
+        }
+      ];
+    }
+
+    function getDefaultAppointments() {
+      const tomorrow = getNextBusinessDate(1);
+      const dayAfter = getNextBusinessDate(2);
+      return [
+        {
+          id: 'apt-201',
+          folio: 'PS-2026-418',
+          service: 'Trámite de Mejoravit',
+          date: tomorrow,
+          time: '10:00 AM',
+          name: 'fernando Gallegos Ochoa',
+          phone: '6391548891',
+          notes: 'Quiero revisar cuánto alcanzo de Mejoravit para ampliar mi casa.',
+          status: 'Pendiente',
+          convertedToClientId: null
+        },
+        {
+          id: 'apt-202',
+          folio: 'PS-2026-419',
+          service: 'Constancia de Situación Fiscal',
+          date: dayAfter,
+          time: '11:00 AM',
+          name: 'Patricia Reyes Luján',
+          phone: '6391320945',
+          notes: 'Me la piden en mi nuevo trabajo, no recuerdo mi contraseña del SAT.',
+          status: 'Confirmada',
+          convertedToClientId: null
+        }
+      ];
+    }
+
+    // Estado global en memoria sincronizado con localStorage
+    let state = {
+      currentView: 'public',
+      selectedCategory: 'Todos',
+      adminTab: 'clients',
+      clients: [],
+      appointments: []
+    };
+
+    function loadState() {
+      try {
+        const storedClients = localStorage.getItem(STORAGE_KEYS.CLIENTS);
+        const storedAppointments = localStorage.getItem(STORAGE_KEYS.APPOINTMENTS);
+
+        if (storedClients) {
+          state.clients = JSON.parse(storedClients);
+        } else {
+          state.clients = getDefaultClients();
+          saveClients();
+        }
+
+        if (storedAppointments) {
+          state.appointments = JSON.parse(storedAppointments);
+        } else {
+          state.appointments = getDefaultAppointments();
+          saveAppointments();
+        }
+      } catch (err) {
+        console.error('Error cargando almacenamiento local:', err);
+        state.clients = getDefaultClients();
+        state.appointments = getDefaultAppointments();
+      }
+    }
+
+    function saveClients() {
+      try {
+        localStorage.setItem(STORAGE_KEYS.CLIENTS, JSON.stringify(state.clients));
+      } catch (e) {
+        console.error('Error guardando clientes:', e);
+      }
+    }
+
+    function saveAppointments() {
+      try {
+        localStorage.setItem(STORAGE_KEYS.APPOINTMENTS, JSON.stringify(state.appointments));
+      } catch (e) {
+        console.error('Error guardando citas:', e);
+      }
+    }
+
+    // =========================================================================
+    // 3. NAVEGACIÓN ENTRE VISTAS (PÚBLICA <-> ADMIN) Y MODALES
+    // =========================================================================
+    function switchView(viewName) {
+      state.currentView = viewName;
+      const publicView = document.getElementById('view-public');
+      const adminView = document.getElementById('view-admin');
+      const publicNavLinks = document.getElementById('public-nav-links');
+      const adminNavBadge = document.getElementById('admin-nav-badge');
+      const btnOpenAdmin = document.getElementById('btn-open-admin-login');
+      const btnBackPublic = document.getElementById('btn-back-to-public');
+      const btnMobileMenu = document.getElementById('btn-mobile-menu');
+      const mobileDrawer = document.getElementById('mobile-menu-drawer');
+
+      mobileDrawer.classList.add('hidden');
+
+      if (viewName === 'admin') {
+        publicView.classList.add('hidden');
+        adminView.classList.remove('hidden');
+        publicNavLinks.classList.add('hidden');
+        publicNavLinks.classList.remove('md:flex');
+        adminNavBadge.classList.remove('hidden');
+        adminNavBadge.classList.add('flex');
+        btnOpenAdmin.classList.add('hidden');
+        btnBackPublic.classList.remove('hidden');
+        btnBackPublic.classList.add('inline-flex');
+        btnMobileMenu.classList.add('hidden');
+
+        refreshAdminPanel();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        adminView.classList.add('hidden');
+        publicView.classList.remove('hidden');
+        publicNavLinks.classList.remove('hidden');
+        publicNavLinks.classList.add('md:flex');
+        adminNavBadge.classList.add('hidden');
+        adminNavBadge.classList.remove('flex');
+        btnOpenAdmin.classList.remove('hidden');
+        btnBackPublic.classList.add('hidden');
+        btnBackPublic.classList.remove('inline-flex');
+        btnMobileMenu.classList.remove('hidden');
+
+        // Refrescar horarios ocupados por si hubo cambios en el admin
+        renderTimeSlots();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-menu-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    function openAdminLoginModal() {
+      document.getElementById('admin-password-input').value = '';
+      document.getElementById('admin-login-error').classList.add('hidden');
+      document.getElementById('modal-admin-login').classList.remove('hidden');
+      setTimeout(() => document.getElementById('admin-password-input').focus(), 100);
+    }
+
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const pass = document.getElementById('admin-password-input').value.trim();
+      if (pass === '1234') {
+        closeModal('modal-admin-login');
+        switchView('admin');
+        showToast('Bienvenido al Panel Administrativo');
+      } else {
+        document.getElementById('admin-login-error').classList.remove('hidden');
+      }
+    }
+
+    function enterAdminDemoDirectly() {
+      closeModal('modal-admin-login');
+      switchView('admin');
+      showToast('Acceso Demo activado');
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast-notification');
+      document.getElementById('toast-message').textContent = message;
+      toast.classList.remove('hidden');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3400);
+    }
+
+    // =========================================================================
+    // 4. RENDERIZADO DE CATÁLOGO DE SERVICIOS (VISTA PÚBLICA)
+    // =========================================================================
+    function renderCategoryTabs() {
+      const container = document.getElementById('service-category-tabs');
+      container.innerHTML = SERVICE_CATEGORIES.map(cat => {
+        const isActive = state.selectedCategory === cat;
+        const baseClasses = 'px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all cursor-pointer';
+        const activeClasses = 'bg-navy-900 text-gold-400 border-2 border-gold-400 shadow-md';
+        const inactiveClasses = 'bg-white text-navy-800 border border-slate-200 hover:border-gold-400 hover:text-navy-900';
+        return `
+          <button type="button" onclick="setServiceCategory('${cat}')" class="${baseClasses} ${isActive ? activeClasses : inactiveClasses}">
+            ${cat}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function setServiceCategory(category) {
+      state.selectedCategory = category;
+      renderCategoryTabs();
+      renderServicesGrid();
+    }
+
+    function renderServicesGrid() {
+      const grid = document.getElementById('services-grid');
+      const filtered = state.selectedCategory === 'Todos'
+        ? SERVICES_CATALOG
+        : SERVICES_CATALOG.filter(s => s.category === state.selectedCategory);
+
+      grid.innerHTML = filtered.map(service => {
+        const reqBadges = service.requirements.slice(0, 3).map(req => `
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-navy-50 text-navy-800 text-[11px] font-medium border border-slate-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-gold-500"></span>
+            ${req}
+          </span>
+        `).join('');
+
+        const highlightTag = service.highlight
+          ? `<span class="px-3 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wide gold-gradient text-navy-900 shadow-sm">${service.highlight}</span>`
+          : '';
+
+        const actionButton = service.requiresAppointment
+          ? `<button type="button" onclick="selectServiceAndScroll('${service.name}')" class="w-full py-3 px-4 rounded-2xl font-bold text-sm text-white bg-navy-900 hover:bg-navy-800 border border-transparent hover:border-gold-400 transition-all flex items-center justify-center gap-2 group">
+              <span>Agendar Cita</span>
+              <svg class="w-4 h-4 text-gold-400 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>`
+          : `<div class="w-full py-3 px-4 rounded-2xl font-bold text-xs sm:text-sm text-navy-800 bg-gold-100 border border-gold-400/60 flex items-center justify-center gap-2">
+              <svg class="w-4 h-4 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <span>Atención directa en mostrador</span>
+            </div>`;
+
+        return `
+          <article class="bg-white rounded-3xl p-6 border border-slate-200/90 hover:border-gold-400 shadow-sm hover:shadow-navy transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-navy-700 bg-navy-100 px-3 py-1 rounded-full">
+                  ${service.category}
+                </span>
+                ${highlightTag}
+              </div>
+
+              <h3 class="text-lg sm:text-xl font-extrabold text-navy-900 leading-snug">
+                ${service.name}
+              </h3>
+
+              <p class="text-sm text-slate-600 mt-2.5 leading-relaxed">
+                ${service.description}
+              </p>
+
+              <div class="mt-4 pt-4 border-t border-slate-100">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Requisitos principales:</p>
+                <div class="flex flex-wrap gap-1.5">
+                  ${reqBadges}
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6">
+              ${actionButton}
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // 5. MÓDULO INTERACTIVO DE AGENDAR CITA (VISTA PÚBLICA)
+    // =========================================================================
+    function populateServiceSelectors() {
+      const bookingSelect = document.getElementById('booking-service');
+      const clientSelect = document.getElementById('client-service');
+
+      // Agrupar servicios por categoría
+      const categories = ['Infonavit y Afore', 'Registro Civil', 'SAT y Fiscales'];
+      let bookingHtml = '';
+      categories.forEach(cat => {
+        const items = SERVICES_CATALOG.filter(s => s.category === cat && s.requiresAppointment);
+        bookingHtml += `<optgroup label="${cat}">`;
+        items.forEach(item => {
+          bookingHtml += `<option value="${item.name}">${item.name}</option>`;
+        });
+        bookingHtml += `</optgroup>`;
+      });
+      bookingSelect.innerHTML = bookingHtml;
+
+      // Para el panel admin incluimos todos los servicios
+      let adminHtml = '';
+      ['Infonavit y Afore', 'Registro Civil', 'SAT y Fiscales', 'Servicios Express'].forEach(cat => {
+        const items = SERVICES_CATALOG.filter(s => s.category === cat);
+        adminHtml += `<optgroup label="${cat}">`;
+        items.forEach(item => {
+          adminHtml += `<option value="${item.name}">${item.name}</option>`;
+        });
+        adminHtml += `</optgroup>`;
+      });
+      clientSelect.innerHTML = adminHtml;
+
+      updateBookingRequirementsPreview();
+    }
+
+    function updateBookingRequirementsPreview() {
+      const selectedName = document.getElementById('booking-service').value;
+      const service = SERVICES_CATALOG.find(s => s.name === selectedName);
+      const hintBox = document.getElementById('booking-req-hint');
+      if (service && hintBox) {
+        hintBox.innerHTML = `
+          <span class="font-bold text-navy-900">Documentos sugeridos:</span>
+          <span class="text-slate-700">${service.requirements.join(' • ')}</span>
+        `;
+      }
+    }
+
+    function selectServiceAndScroll(serviceName) {
+      const bookingSelect = document.getElementById('booking-service');
+      bookingSelect.value = serviceName;
+      updateBookingRequirementsPreview();
+
+      const section = document.getElementById('agendar-cita');
+      section.scrollIntoView({ behavior: 'smooth' });
+      showToast(`Trámite seleccionado: ${serviceName}`);
+    }
+
+    function initBookingDate() {
+      const dateInput = document.getElementById('booking-date');
+      const todayISO = formatDateISO(new Date());
+      const defaultBusinessDate = getNextBusinessDate(1);
+      dateInput.min = todayISO;
+      dateInput.value = defaultBusinessDate;
+      renderTimeSlots();
+    }
+
+    function handleDateChange() {
+      const dateInput = document.getElementById('booking-date');
+      const warning = document.getElementById('sunday-warning');
+      if (!dateInput.value) return;
+
+      const [y, m, d] = dateInput.value.split('-').map(Number);
+      const chosenDate = new Date(y, m - 1, d);
+
+      // Si es domingo (getDay() === 0), avanzar al lunes automáticamente
+      if (chosenDate.getDay() === 0) {
+        chosenDate.setDate(chosenDate.getDate() + 1);
+        dateInput.value = formatDateISO(chosenDate);
+        warning.classList.remove('hidden');
+      } else {
+        warning.classList.add('hidden');
+      }
+
+      // Limpiar hora seleccionada al cambiar fecha
+      document.getElementById('booking-time').value = '';
+      renderTimeSlots();
+    }
+
+    function renderTimeSlots() {
+      const grid = document.getElementById('time-slots-grid');
+      const selectedDate = document.getElementById('booking-date').value;
+      const selectedTime = document.getElementById('booking-time').value;
+
+      // Buscar horarios ocupados (citas activas no canceladas para esa fecha)
+      const occupiedTimes = state.appointments
+        .filter(apt => apt.date === selectedDate && apt.status !== 'Cancelada')
+        .map(apt => apt.time);
+
+      grid.innerHTML = TIME_SLOTS.map(slot => {
+        const isOccupied = occupiedTimes.includes(slot);
+        const isSelected = selectedTime === slot && !isOccupied;
+
+        if (isOccupied) {
+          return `
+            <button type="button" disabled class="py-3 px-3 rounded-2xl bg-slate-100 border border-slate-200 text-slate-400 text-xs sm:text-sm font-semibold cursor-not-allowed flex flex-col items-center justify-center">
+              <span class="line-through">${slot}</span>
+              <span class="text-[10px] uppercase font-bold text-slate-400 mt-0.5">Ocupado</span>
+            </button>
+          `;
+        }
+
+        const btnStyle = isSelected
+          ? 'bg-navy-900 text-gold-400 border-2 border-gold-400 shadow-md scale-[1.02]'
+          : 'bg-white text-navy-900 border border-slate-300 hover:border-gold-400 hover:bg-gold-50';
+
+        return `
+          <button type="button" onclick="selectTimeSlot('${slot}')" class="py-3 px-3 rounded-2xl text-xs sm:text-sm font-bold transition-all flex flex-col items-center justify-center ${btnStyle}">
+            <span>${slot}</span>
+            <span class="text-[10px] font-medium ${isSelected ? 'text-white' : 'text-emerald-600'} mt-0.5">
+              ${isSelected ? 'Seleccionado' : 'Disponible'}
+            </span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectTimeSlot(slot) {
+      document.getElementById('booking-time').value = slot;
+      document.getElementById('time-error-msg').classList.add('hidden');
+      renderTimeSlots();
+    }
+
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+      const serviceName = document.getElementById('booking-service').value;
+      const date = document.getElementById('booking-date').value;
+      const time = document.getElementById('booking-time').value;
+      const name = document.getElementById('booking-name').value.trim();
+      const phone = document.getElementById('booking-phone').value.trim();
+      const notes = document.getElementById('booking-notes').value.trim();
+
+      if (!time) {
+        document.getElementById('time-error-msg').classList.remove('hidden');
+        return;
+      }
+
+      // Verificar doble seguridad de disponibilidad
+      const conflict = state.appointments.some(
+        apt => apt.date === date && apt.time === time && apt.status !== 'Cancelada'
+      );
+      if (conflict) {
+        showToast('Ese horario acaba de ocuparse, elige otro por favor.');
+        renderTimeSlots();
+        return;
+      }
+
+      const folioNum = Math.floor(100 + Math.random() * 900);
+      const folio = `PS-2026-${folioNum}`;
+
+      const newAppointment = {
+        id: 'apt-' + Date.now(),
+        folio,
+        service: serviceName,
+        date,
+        time,
+        name,
+        phone,
+        notes,
+        status: 'Pendiente',
+        convertedToClientId: null
+      };
+
+      state.appointments.unshift(newAppointment);
+      saveAppointments();
+
+      // Actualizar cuadrícula de horarios inmediatamente
+      document.getElementById('booking-time').value = '';
+      document.getElementById('booking-name').value = '';
+      document.getElementById('booking-phone').value = '';
+      document.getElementById('booking-notes').value = '';
+      renderTimeSlots();
+
+      // Abrir Modal de Confirmación con requisitos y enlace de WhatsApp
+      openBookingConfirmationModal(newAppointment);
+    }
+
+    function openBookingConfirmationModal(appointment) {
+      const serviceObj = SERVICES_CATALOG.find(s => s.name === appointment.service);
+      const reqs = serviceObj ? serviceObj.requirements : ['INE vigente', 'CURP y NSS'];
+
+      document.getElementById('confirm-modal-folio').textContent = `FOLIO: ${appointment.folio}`;
+      document.getElementById('confirm-modal-name').textContent = appointment.name;
+      document.getElementById('confirm-modal-service').textContent = appointment.service;
+      document.getElementById('confirm-modal-datetime').textContent = `${formatDateHuman(appointment.date)} • ${appointment.time}`;
+
+      document.getElementById('confirm-modal-requirements').innerHTML = reqs.map(r => `
+        <li class="flex items-start gap-2">
+          <span class="text-gold-600 font-bold">✓</span>
+          <span>${r}</span>
+        </li>
+      `).join('');
+
+      const waText = encodeURIComponent(
+        `Hola *PS Trámites y Servicios*, acabo de agendar mi cita en línea:\n\n` +
+        `• *Folio:* ${appointment.folio}\n` +
+        `• *Nombre:* ${appointment.name}\n` +
+        `• *Trámite:* ${appointment.service}\n` +
+        `• *Fecha:* ${formatDateHuman(appointment.date)}\n` +
+        `• *Horario:* ${appointment.time}\n\n` +
+        `¡Muchas gracias!`
+      );
+      document.getElementById('confirm-modal-wa-link').href = `https://wa.me/526391000000?text=${waText}`;
+
+      document.getElementById('modal-booking-success').classList.remove('hidden');
+    }
+
+    // =========================================================================
+    // 6. PANEL ADMIN: MÉTRICAS, BASE DE DATOS DE CLIENTES Y CITAS
+    // =========================================================================
+    function refreshAdminPanel() {
+      updateAdminKPIs();
+      renderClientsTable();
+      renderAppointmentsList();
+    }
+
+    function updateAdminKPIs() {
+      const totalClients = state.clients.length;
+      const inProgress = state.clients.filter(c => c.status === 'En proceso').length;
+      const ready = state.clients.filter(c => c.status === 'Listo para entrega').length;
+      const pendingApts = state.appointments.filter(a => a.status === 'Pendiente' || a.status === 'Confirmada').length;
+
+      document.getElementById('kpi-total-clients').textContent = totalClients;
+      document.getElementById('kpi-in-progress').textContent = inProgress;
+      document.getElementById('kpi-ready').textContent = ready;
+      document.getElementById('kpi-pending-appointments').textContent = pendingApts;
+
+      document.getElementById('badge-clients-count').textContent = totalClients;
+      document.getElementById('badge-appointments-count').textContent = state.appointments.length;
+    }
+
+    function switchAdminTab(tabName) {
+      state.adminTab = tabName;
+      const tabClientsBtn = document.getElementById('admin-tab-clients');
+      const tabAptsBtn = document.getElementById('admin-tab-appointments');
+      const panelClients = document.getElementById('admin-panel-clients');
+      const panelApts = document.getElementById('admin-panel-appointments');
+
+      const activeBtnClass = 'inline-flex items-center gap-2 px-5 py-3 rounded-2xl text-sm font-bold transition-all bg-navy-900 text-white shadow-md';
+      const inactiveBtnClass = 'inline-flex items-center gap-2 px-5 py-3 rounded-2xl text-sm font-bold transition-all bg-white text-navy-900 border border-slate-200 hover:border-gold-400';
+
+      if (tabName === 'clients') {
+        tabClientsBtn.className = activeBtnClass;
+        tabAptsBtn.className = inactiveBtnClass;
+        panelClients.classList.remove('hidden');
+        panelApts.classList.add('hidden');
+        renderClientsTable();
+      } else {
+        tabAptsBtn.className = activeBtnClass;
+        tabClientsBtn.className = inactiveBtnClass;
+        panelApts.classList.remove('hidden');
+        panelClients.classList.add('hidden');
+        renderAppointmentsList();
+      }
+    }
+
+    function getStatusBadgeStyle(status) {
+      switch (status) {
+        case 'Pendiente':
+          return 'bg-amber-100 text-amber-800 border-amber-300';
+        case 'En proceso':
+          return 'bg-blue-100 text-blue-800 border-blue-300';
+        case 'Listo para entrega':
+          return 'bg-emerald-100 text-emerald-800 border-emerald-300';
+        case 'Entregado':
+          return 'bg-slate-200 text-slate-700 border-slate-300';
+        default:
+          return 'bg-slate-100 text-slate-700 border-slate-200';
+      }
+    }
+
+    function renderClientsTable() {
+      const query = (document.getElementById('client-search-input').value || '').toLowerCase().trim();
+      const statusFilter = document.getElementById('client-status-filter').value;
+
+      const filtered = state.clients.filter(client => {
+        const matchesStatus = statusFilter === 'Todos' || client.status === statusFilter;
+        if (!matchesStatus) return false;
+
+        if (!query) return true;
+        return (
+          (client.name || '').toLowerCase().includes(query) ||
+          (client.curp || '').toLowerCase().includes(query) ||
+          (client.rfc || '').toLowerCase().includes(query) ||
+          (client.nss || '').toLowerCase().includes(query) ||
+          (client.phone || '').toLowerCase().includes(query) ||
+          (client.service || '').toLowerCase().includes(query)
+        );
+      });
+
+      const tbody = document.getElementById('clients-table-body');
+      const mobileContainer = document.getElementById('clients-mobile-cards');
+      const emptyState = document.getElementById('clients-empty-state');
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '';
+        mobileContainer.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+
+      // Renderizar tabla Desktop
+      tbody.innerHTML = filtered.map(client => {
+        const waMsg = encodeURIComponent(
+          `Hola ${client.name}, te saludamos de *PS Trámites y Servicios*. Te informamos que tu trámite de *${client.service}* se encuentra actualmente en estatus: *${client.status}*.`
+        );
+
+        return `
+          <tr class="hover:bg-navy-50/70 transition-colors">
+            <td class="py-4 px-5 align-top">
+              <p class="font-extrabold text-navy-900">${client.name}</p>
+              <p class="text-xs text-slate-500 mt-0.5 font-medium">Tel: ${client.phone}</p>
+              <p class="text-[11px] text-slate-400 mt-0.5">Alta: ${client.createdAt || 'Reciente'}</p>
+            </td>
+
+            <td class="py-4 px-5 align-top font-mono text-xs space-y-1">
+              <div><span class="font-sans font-bold text-slate-500">CURP:</span> <span class="text-navy-900">${client.curp || '—'}</span></div>
+              <div><span class="font-sans font-bold text-slate-500">RFC:</span> <span class="text-navy-900">${client.rfc || '—'}</span></div>
+              <div><span class="font-sans font-bold text-slate-500">NSS:</span> <span class="text-navy-900">${client.nss || '—'}</span></div>
+            </td>
+
+            <td class="py-4 px-5 align-top max-w-xs">
+              <span class="inline-block px-2.5 py-0.5 rounded-lg bg-navy-100 text-navy-900 font-bold text-xs">
+                ${client.service}
+              </span>
+              <p class="text-xs text-slate-600 mt-1.5 line-clamp-2">${client.notes || 'Sin observaciones adicionales.'}</p>
+            </td>
+
+            <td class="py-4 px-5 align-top">
+              <select onchange="updateClientStatus('${client.id}', this.value)" class="px-3 py-1.5 rounded-xl text-xs font-bold border cursor-pointer focus:outline-none ${getStatusBadgeStyle(client.status)}">
+                <option value="Pendiente" ${client.status === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
+                <option value="En proceso" ${client.status === 'En proceso' ? 'selected' : ''}>En proceso</option>
+                <option value="Listo para entrega" ${client.status === 'Listo para entrega' ? 'selected' : ''}>Listo para entrega</option>
+                <option value="Entregado" ${client.status === 'Entregado' ? 'selected' : ''}>Entregado</option>
+              </select>
+            </td>
+
+            <td class="py-4 px-5 align-top text-right">
+              <div class="inline-flex items-center justify-end gap-1.5">
+                <a href="https://wa.me/52${client.phone}?text=${waMsg}" target="_blank" rel="noopener noreferrer" title="Enviar WhatsApp al cliente" class="p-2 rounded-xl bg-emerald-50 text-emerald-600 hover:bg-emerald-600 hover:text-white transition-colors">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771z"/>
+                  </svg>
+                </a>
+                <button onclick="openClientModal('${client.id}')" title="Editar registro" class="p-2 rounded-xl bg-navy-100 text-navy-800 hover:bg-navy-900 hover:text-gold-400 transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
+                </button>
+                <button onclick="confirmDeleteClient('${client.id}')" title="Eliminar cliente" class="p-2 rounded-xl bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      // Renderizar tarjetas Móvil / Tablet
+      mobileContainer.innerHTML = filtered.map(client => {
+        const waMsg = encodeURIComponent(
+          `Hola ${client.name}, te saludamos de *PS Trámites y Servicios*. Tu trámite de *${client.service}* está: *${client.status}*.`
+        );
+
+        return `
+          <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm space-y-3">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <h4 class="font-extrabold text-navy-900 text-base">${client.name}</h4>
+                <p class="text-xs text-slate-500">WhatsApp: ${client.phone}</p>
+              </div>
+              <select onchange="updateClientStatus('${client.id}', this.value)" class="px-2.5 py-1 rounded-xl text-xs font-bold border ${getStatusBadgeStyle(client.status)}">
+                <option value="Pendiente" ${client.status === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
+                <option value="En proceso" ${client.status === 'En proceso' ? 'selected' : ''}>En proceso</option>
+                <option value="Listo para entrega" ${client.status === 'Listo para entrega' ? 'selected' : ''}>Listo para entrega</option>
+                <option value="Entregado" ${client.status === 'Entregado' ? 'selected' : ''}>Entregado</option>
+              </select>
+            </div>
+
+            <div class="bg-navy-50 rounded-2xl p-3 text-xs font-mono space-y-1">
+              <div><span class="font-sans font-bold text-slate-500">CURP:</span> ${client.curp || '—'}</div>
+              <div><span class="font-sans font-bold text-slate-500">RFC:</span> ${client.rfc || '—'}</div>
+              <div><span class="font-sans font-bold text-slate-500">NSS:</span> ${client.nss || '—'}</div>
+            </div>
+
+            <div>
+              <span class="inline-block px-2.5 py-1 rounded-lg bg-navy-100 text-navy-900 font-bold text-xs">${client.service}</span>
+              <p class="text-xs text-slate-600 mt-1.5">${client.notes || 'Sin notas.'}</p>
+            </div>
+
+            <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+              <a href="https://wa.me/52${client.phone}?text=${waMsg}" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold">
+                WhatsApp
+              </a>
+              <button onclick="openClientModal('${client.id}')" class="px-3.5 py-2 rounded-xl bg-navy-100 text-navy-900 text-xs font-bold">
+                Editar
+              </button>
+              <button onclick="confirmDeleteClient('${client.id}')" class="px-3.5 py-2 rounded-xl bg-red-50 text-red-600 text-xs font-bold">
+                Eliminar
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateClientStatus(clientId, newStatus) {
+      const idx = state.clients.findIndex(c => c.id === clientId);
+      if (idx !== -1) {
+        state.clients[idx].status = newStatus;
+        saveClients();
+        updateAdminKPIs();
+        renderClientsTable();
+        showToast(`Estatus actualizado a "${newStatus}"`);
+      }
+    }
+
+    function openClientModal(clientId = null, prefillFromAppointment = null) {
+      const form = document.getElementById('client-crud-form');
+      form.reset();
+      document.getElementById('client-form-id').value = '';
+      document.getElementById('client-form-source-appointment-id').value = '';
+
+      if (clientId) {
+        const client = state.clients.find(c => c.id === clientId);
+        if (!client) return;
+        document.getElementById('client-modal-title').textContent = 'Editar Registro de Cliente';
+        document.getElementById('client-form-id').value = client.id;
+        document.getElementById('client-name').value = client.name;
+        document.getElementById('client-phone').value = client.phone;
+        document.getElementById('client-curp').value = client.curp || '';
+        document.getElementById('client-rfc').value = client.rfc || '';
+        document.getElementById('client-nss').value = client.nss || '';
+        document.getElementById('client-service').value = client.service;
+        document.getElementById('client-status').value = client.status;
+        document.getElementById('client-notes').value = client.notes || '';
+      } else if (prefillFromAppointment) {
+        document.getElementById('client-modal-title').textContent = 'Registrar Cita en Base de Datos';
+        document.getElementById('client-form-source-appointment-id').value = prefillFromAppointment.id;
+        document.getElementById('client-name').value = prefillFromAppointment.name;
+        document.getElementById('client-phone').value = prefillFromAppointment.phone;
+        document.getElementById('client-service').value = prefillFromAppointment.service;
+        document.getElementById('client-status').value = 'En proceso';
+        document.getElementById('client-notes').value = prefillFromAppointment.notes
+          ? `Cita Folio ${prefillFromAppointment.folio}: ${prefillFromAppointment.notes}`
+          : `Ingresado desde cita web Folio ${prefillFromAppointment.folio}.`;
+      } else {
+        document.getElementById('client-modal-title').textContent = 'Registrar Nuevo Cliente';
+        document.getElementById('client-status').value = 'Pendiente';
+      }
+
+      document.getElementById('modal-client-form').classList.remove('hidden');
+    }
+
+    function handleClientFormSubmit(e) {
+      e.preventDefault();
+      const id = document.getElementById('client-form-id').value;
+      const sourceAptId = document.getElementById('client-form-source-appointment-id').value;
+
+      const clientData = {
+        name: document.getElementById('client-name').value.trim(),
+        phone: document.getElementById('client-phone').value.trim(),
+        curp: document.getElementById('client-curp').value.trim().toUpperCase(),
+        rfc: document.getElementById('client-rfc').value.trim().toUpperCase(),
+        nss: document.getElementById('client-nss').value.trim(),
+        service: document.getElementById('client-service').value,
+        status: document.getElementById('client-status').value,
+        notes: document.getElementById('client-notes').value.trim()
+      };
+
+      if (id) {
+        const idx = state.clients.findIndex(c => c.id === id);
+        if (idx !== -1) {
+          state.clients[idx] = { ...state.clients[idx], ...clientData };
+          showToast('Expediente del cliente actualizado');
+        }
+      } else {
+        const newClient = {
+          id: 'cli-' + Date.now(),
+          ...clientData,
+          createdAt: formatDateISO(new Date())
+        };
+        state.clients.unshift(newClient);
+
+        // Si provenía de una cita web, marcar la cita como registrada en BD
+        if (sourceAptId) {
+          const aptIdx = state.appointments.findIndex(a => a.id === sourceAptId);
+          if (aptIdx !== -1) {
+            state.appointments[aptIdx].status = 'Registrada en BD';
+            state.appointments[aptIdx].convertedToClientId = newClient.id;
+            saveAppointments();
+          }
+        }
+        showToast('Cliente guardado en la Base de Datos');
+      }
+
+      saveClients();
+      closeModal('modal-client-form');
+      refreshAdminPanel();
+    }
+
+    function confirmDeleteClient(clientId) {
+      const client = state.clients.find(c => c.id === clientId);
+      if (!client) return;
+
+      document.getElementById('confirm-dialog-title').textContent = '¿Eliminar cliente?';
+      document.getElementById('confirm-dialog-message').textContent = `Se eliminará permanentemente el expediente de ${client.name}.`;
+
+      const actionBtn = document.getElementById('confirm-dialog-action-btn');
+      actionBtn.onclick = () => {
+        state.clients = state.clients.filter(c => c.id !== clientId);
+        saveClients();
+        closeModal('modal-confirm-dialog');
+        refreshAdminPanel();
+        showToast('Registro eliminado de la base de datos');
+      };
+
+      document.getElementById('modal-confirm-dialog').classList.remove('hidden');
+    }
+
+    // =========================================================================
+    // 7. GESTIÓN DE CITAS RECIBIDAS EN EL PANEL ADMIN
+    // =========================================================================
+    function renderAppointmentsList() {
+      const container = document.getElementById('appointments-list-container');
+      const emptyState = document.getElementById('appointments-empty-state');
+
+      if (state.appointments.length === 0) {
+        container.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+
+      container.innerHTML = state.appointments.map(apt => {
+        let statusBadge = '';
+        if (apt.status === 'Pendiente') {
+          statusBadge = '<span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Pendiente</span>';
+        } else if (apt.status === 'Confirmada') {
+          statusBadge = '<span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800">Confirmada</span>';
+        } else if (apt.status === 'Registrada en BD') {
+          statusBadge = '<span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">✓ En Base de Datos</span>';
+        } else {
+          statusBadge = '<span class="px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-700">Cancelada</span>';
+        }
+
+        const isConverted = apt.status === 'Registrada en BD';
+        const isCancelled = apt.status === 'Cancelada';
+
+        return `
+          <div class="bg-white rounded-3xl p-6 border ${isConverted ? 'border-emerald-300' : 'border-slate-200'} shadow-sm flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="text-xs font-extrabold text-navy-900 bg-gold-100 border border-gold-400/50 px-3 py-1 rounded-full">
+                  ${apt.folio}
+                </span>
+                ${statusBadge}
+              </div>
+
+              <h4 class="text-lg font-extrabold text-navy-900 capitalize">${apt.name}</h4>
+              <p class="text-xs text-slate-500 mt-0.5">WhatsApp: <strong class="text-navy-800">${apt.phone}</strong></p>
+
+              <div class="mt-3 p-3.5 rounded-2xl bg-navy-50 border border-slate-200/80 space-y-1.5 text-xs">
+                <div class="flex justify-between">
+                  <span class="text-slate-500">Trámite:</span>
+                  <span class="font-bold text-navy-900">${apt.service}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-500">Fecha:</span>
+                  <span class="font-bold text-navy-900 capitalize">${formatDateHuman(apt.date)}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-500">Hora:</span>
+                  <span class="font-extrabold text-gold-600">${apt.time}</span>
+                </div>
+              </div>
+
+              ${apt.notes ? `<p class="text-xs text-slate-600 mt-3 italic">“${apt.notes}”</p>` : ''}
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center gap-2">
+              ${!isConverted && !isCancelled ? `
+                <button onclick="convertAppointmentToClient('${apt.id}')" class="flex-1 py-2.5 px-4 rounded-xl font-extrabold text-xs text-navy-900 gold-gradient hover:brightness-105 shadow-sm transition-all">
+                  + Registrar en Base de Datos
+                </button>
+              ` : ''}
+
+              ${apt.status === 'Pendiente' ? `
+                <button onclick="updateAppointmentStatus('${apt.id}', 'Confirmada')" class="py-2.5 px-3.5 rounded-xl font-bold text-xs text-white bg-navy-900 hover:bg-navy-800 transition-colors">
+                  Confirmar
+                </button>
+              ` : ''}
+
+              ${!isCancelled && !isConverted ? `
+                <button onclick="updateAppointmentStatus('${apt.id}', 'Cancelada')" class="py-2.5 px-3 rounded-xl font-bold text-xs text-red-600 bg-red-50 hover:bg-red-100 transition-colors">
+                  Cancelar
+                </button>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function convertAppointmentToClient(appointmentId) {
+      const apt = state.appointments.find(a => a.id === appointmentId);
+      if (!apt) return;
+      // Abrir modal prellenado para que el admin pueda agregar CURP/RFC/NSS o guardar directo con 1 clic
+      openClientModal(null, apt);
+    }
+
+    function updateAppointmentStatus(appointmentId, newStatus) {
+      const idx = state.appointments.findIndex(a => a.id === appointmentId);
+      if (idx !== -1) {
+        state.appointments[idx].status = newStatus;
+        saveAppointments();
+        refreshAdminPanel();
+        showToast(`Cita marcada como "${newStatus}"`);
+      }
+    }
+
+    function openResetDemoModal() {
+      document.getElementById('confirm-dialog-title').textContent = '¿Restaurar datos demo?';
+      document.getElementById('confirm-dialog-message').textContent = 'Se restablecerán los 5 clientes y 2 citas iniciales de demostración.';
+
+      const actionBtn = document.getElementById('confirm-dialog-action-btn');
+      actionBtn.onclick = () => {
+        state.clients = getDefaultClients();
+        state.appointments = getDefaultAppointments();
+        saveClients();
+        saveAppointments();
+        closeModal('modal-confirm-dialog');
+        refreshAdminPanel();
+        renderTimeSlots();
+        showToast('Datos de demostración restaurados');
+      };
+
+      document.getElementById('modal-confirm-dialog').classList.remove('hidden');
+    }
+
+    // =========================================================================
+    // 8. INICIALIZACIÓN DE LA APLICACIÓN
+    // =========================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      renderCategoryTabs();
+      renderServicesGrid();
+      populateServiceSelectors();
+      initBookingDate();
+      updateAdminKPIs();
+    });
+  </script>
+</body>
+</html>
+```
